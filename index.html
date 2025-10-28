@@ -45,10 +45,10 @@
   </div>
 </header>
 
+<canvas id="hero-bg"></canvas>
 
-    <canvas id="hero-bg"></canvas>
-<section class="min-h-screen flex items-end justify-start px-10 md:px-24 pb-20 relative">
-  <div class="max-w-2xl text-left z-10">
+<section id="hero-section" class="min-h-screen flex items-end justify-start px-10 md:px-24 pb-20 relative z-10">
+  <div class="max-w-2xl text-left">
     <p class="uppercase text-gray-400 text-xs tracking-widest mb-4">
       MULTI-AGENTIC TEAMS FOR FUTURISTIC SYSTEMS.
     </p>
@@ -71,6 +71,83 @@
   </div>
 </section>
 
+<section id="second-section" class="min-h-screen bg-white flex flex-col justify-center items-center text-center px-8 py-20">
+  <p class="uppercase text-gray-500 text-xs tracking-widest mb-2">
+    A CONNECTED NETWORK OF AI AGENTS
+  </p>
+
+  <h2 class="text-3xl md:text-5xl font-semibold text-black mb-4">
+    The <span class="italic font-light">operating system</span> for innovation.
+  </h2>
+
+  <p class="text-gray-700 max-w-2xl text-sm md:text-base mb-12">
+    Heckto orchestrates autonomous systems across data, design, and intelligence — forming a synchronized ecosystem that learns, adapts, and evolves like your best engineering team, only faster.
+  </p>
+
+<!-- Video Container -->
+<div class="relative w-full max-w-7xl mx-auto aspect-[16/9] rounded-[2rem] overflow-hidden  mb-24 px-4 md:px-0">
+  <video 
+    class="w-full h-full object-cover rounded-[2rem]" 
+    autoplay 
+    muted 
+    loop 
+    playsinline 
+    controls
+    preload="metadata"
+  >
+    <source src="assets/imgs/interview.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</div>
+
+
+
+<!-- Media Logos -->
+<div class="w-[90vw] mx-auto flex flex-wrap justify-center items-center gap-10 md:gap-20 opacity-70 mb-10">
+  <img src="https://files.staging.peachworlds.com/website/fafa2249-ce10-4278-adff-5310620a6fd4/breakit.svg" alt="Breakit" class="h-8 md:h-10 object-contain">
+  <img src="https://files.staging.peachworlds.com/website/5af14f5b-3f68-467c-9ebf-26b0c150c7a8/forbes-logo-1.svg" alt="Forbes" class="h-8 md:h-10 object-contain">
+  <img src="http://files.staging.peachworlds.com/website/89387cd2-4278-4317-b50b-1fad635215d4/etn-.svg" alt="Etn" class="h-8 md:h-10 object-contain">
+  <img src="https://files.staging.peachworlds.com/website/ebdd3574-dc9b-4802-9d73-ccfe27b6b431/fortune-logo-2016.png" alt="Fortune" class="h-8 md:h-10 object-contain">
+  <img src="https://files.staging.peachworlds.com/website/d45004a6-9bef-412a-bef1-157f4ab449ff/250px-dagens-industri-rgb.png" alt="Dagens Industri" class="h-8 md:h-10 object-contain">
+</div>
+
+
+  <p class="text-gray-400 text-xs mt-8">Heckto in the Media</p>
+</section>
+
+
+<section class="w-full bg-white text-black min-h-[220vh] flex flex-col justify-center px-8 md:px-24">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-24 justify-center items-start max-w-7xl mx-auto pt-32">
+    
+    <!-- Analyze Card -->
+    <div class="flex flex-col items-start">
+      <div class="w-full h-[65vh] bg-gray-100 rounded-3xl overflow-hidden mb-10 shadow-md">
+        <img src="https://files.staging.peachworlds.com/website/4d60ab66-402e-4c34-a3db-cd63b8cfb897/b886d9e2-ffff-44ec-8294-2d039d36d4f6.jpg"
+             alt="Analyze Visual"
+             class="w-full h-full object-cover">
+      </div>
+      <h3 class="text-3xl font-normal mb-3 tracking-tight">Analyze</h3>
+      <p class="text-gray-500 leading-relaxed max-w-md">
+        Heckto dives into your data, uncovers insights, and explains performance in real-time — helping teams make smarter decisions faster.
+      </p>
+    </div>
+
+    <!-- Execute Card -->
+    <div class="flex flex-col items-start">
+      <div class="w-full h-[65vh] bg-gray-100 rounded-3xl overflow-hidden mb-10 shadow-md">
+        <img src="https://files.staging.peachworlds.com/website/18daafb4-b084-4b37-aa4f-8180f2cd70a3/5b2078ab-fa71-432b-a201-e714c722ad69.jpg"
+             alt="Execute Visual"
+             class="w-full h-full object-cover">
+      </div>
+      <h3 class="text-3xl font-normal mb-3 tracking-tight">Execute</h3>
+      <p class="text-gray-500 leading-relaxed max-w-md">
+        Heckto automates execution across platforms — optimizing systems, deploying updates, and maintaining precision without human delay.
+      </p>
+    </div>
+
+  </div>
+</section>
+
 
     <footer class="py-12 border-t border-white/10 text-center text-gray-500 text-sm">
       <p>© 2025 Heckto. Crafted with <span class="text-teal-400">focus</span> and caffeine.</p>
@@ -78,6 +155,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.26/bundled/lenis.min.js"></script>
 <script type="module" src="./assets/js/animation.js"></script>
 <script  src="./assets/js/loader.js"></script>
+<script  src="./assets/js/gsap.js"></script>
 
   </body>
 </html>
