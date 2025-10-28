@@ -85,20 +85,13 @@
   </p>
 
 <!-- Video Container -->
-<div class="relative w-full max-w-7xl mx-auto aspect-[16/9] rounded-[2rem] overflow-hidden  mb-24 px-4 md:px-0">
-  <video 
-    class="w-full h-full object-cover rounded-[2rem]" 
-    autoplay 
-    muted 
-    loop 
-    playsinline 
-    controls
-    preload="metadata"
-  >
-    <source src="assets/imgs/interview.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-</div>
+    <div class="relative w-full max-w-7xl mx-auto aspect-[16/9] rounded-[2rem] overflow-hidden  mb-24 px-4 md:px-0">
+    <video 
+        class="w-full h-full object-cover rounded-[2rem]"   autoplay   muted   loop    playsinline    controls preload="metadata">
+        <source src="assets/imgs/interview.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
 
 
 
@@ -116,13 +109,13 @@
 </section>
 
 
-<section class="w-full bg-white text-black min-h-[220vh] flex flex-col justify-center px-8 md:px-24">
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-24 justify-center items-start max-w-7xl mx-auto pt-32">
+<section class="w-full bg-white text-black flex flex-col justify-start px-8 md:px-24 pt-32 pb-[30vh]">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-24 justify-center items-start max-w-8xl mx-auto">
     
     <!-- Analyze Card -->
     <div class="flex flex-col items-start">
       <div class="w-full h-[65vh] bg-gray-100 rounded-3xl overflow-hidden mb-10 shadow-md">
-        <img src="https://files.staging.peachworlds.com/website/4d60ab66-402e-4c34-a3db-cd63b8cfb897/b886d9e2-ffff-44ec-8294-2d039d36d4f6.jpg"
+        <img src="assets/imgs/anaylze.jpg"
              alt="Analyze Visual"
              class="w-full h-full object-cover">
       </div>
@@ -135,7 +128,7 @@
     <!-- Execute Card -->
     <div class="flex flex-col items-start">
       <div class="w-full h-[65vh] bg-gray-100 rounded-3xl overflow-hidden mb-10 shadow-md">
-        <img src="https://files.staging.peachworlds.com/website/18daafb4-b084-4b37-aa4f-8180f2cd70a3/5b2078ab-fa71-432b-a201-e714c722ad69.jpg"
+        <img src="assets/imgs/execute.jpg"
              alt="Execute Visual"
              class="w-full h-full object-cover">
       </div>
@@ -147,6 +140,38 @@
 
   </div>
 </section>
+<section id="chat-section" class="relative w-full bg-black text-white min-h-screen flex flex-col justify-center items-center px-6">
+  <div class="max-w-3xl w-full space-y-10">
+    
+    <!-- Message 1 -->
+    <div class="chat-message border border-white/20 rounded-2xl p-6 text-lg leading-relaxed opacity-0">
+      Hi Heckto! Every Monday at 9am, generate a weekly report for all my clients and send me an email with key performance highlights.
+    </div>
+
+    <!-- Message 2 (with Heckto DP) -->
+    <div class="flex items-start gap-4 opacity-0 chat-message">
+      <img src="assets/imgs/heckto_icon.webp" alt="Heckto" class="w-10 h-10 rounded-full object-cover mt-1">
+      <div class="bg-white text-black rounded-2xl p-6 text-lg leading-relaxed inline-block">
+        Absolutely! I’ll handle the weekly reporting going forward. ✅
+      </div>
+    </div>
+
+    <!-- Message 3 -->
+    <div class="chat-message border border-white/20 rounded-2xl p-6 text-lg leading-relaxed opacity-0">
+      Also, make sure to filter out all irrelevant data for better analytics accuracy.
+    </div>
+
+    <!-- Message 4 -->
+    <div class="flex items-start gap-4 opacity-0 chat-message">
+      <img src="assets/imgs/heckto_icon.webp" alt="Heckto" class="w-10 h-10 rounded-full object-cover mt-1">
+      <div class="bg-white text-black rounded-2xl p-6 text-lg leading-relaxed inline-block">
+        On it! Adding that to my agenda each day. 📊
+      </div>
+    </div>
+
+  </div>
+</section>
+
 
 
     <footer class="py-12 border-t border-white/10 text-center text-gray-500 text-sm">

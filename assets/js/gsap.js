@@ -38,3 +38,38 @@ gsap.from("#second-section", {
     start: "top 80%",
   },
 });
+
+
+// Helper: Typing effect
+function typeText(element, text, delay = 0, speed = 30) {
+  element.innerHTML = "";
+  let i = 0;
+  setTimeout(() => {
+    const interval = setInterval(() => {
+      element.innerHTML += text.charAt(i);
+      i++;
+      if (i >= text.length) clearInterval(interval);
+    }, speed);
+  }, delay);
+}
+
+// Scroll animation timeline
+const messages = gsap.utils.toArray(".chat-message");
+
+const tl = gsap.timeline({
+  scrollTrigger: {
+    trigger: "#chat-section",
+    start: "top top",
+    end: "+=400%",
+    scrub: true,
+    pin: true,
+  }
+});
+
+// Animate messages appearing one by one
+messages.forEach((msg, i) => {
+  const originalText = msg.innerText.trim();
+  tl.to(msg, { opacity: 1, duration: 0.3, onStart: () => {
+    typeText(msg.querySelector("div") || msg, originalText);
+  }}, "+=1.2");
+});

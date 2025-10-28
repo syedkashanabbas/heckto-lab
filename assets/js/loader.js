@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ease: "power4.inOut",
         onComplete: () => {
           preloader.remove();
-          revealContent();
+          // revealContent();
         },
       });
     }, 400);

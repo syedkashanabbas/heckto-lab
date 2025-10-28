@@ -50,3 +50,12 @@ p {
   z-index: 1;
 }
 
+
+#chat-section {
+  font-family: "Bricolage Grotesque", sans-serif;
+  letter-spacing: 0.2px;
+}
+.chat-message {
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
