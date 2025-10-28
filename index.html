@@ -3,40 +3,29 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Futuristic Starter Template</title>
- <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
+    <title>Heckto Lab | Where Innovation Comes to Reality</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script type="module" src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.26/dist/lenis.min.js"></script>
     <script type="module" src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"></script>
-    <style>
-      body {
-        background: #000;
-        color: #fff;
-        overflow-x: hidden;
-       font-family: "Bricolage Grotesque", sans-serif;
-      }
-      canvas#hero-bg {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-      }
-      h1, h2, h3, h4, h5, h6 {
-        font-family: "Bricolage Grotesque", sans-serif;
-        font-weight: 700;
-      }
-      p {
-        font-weight: 400;
-      }
-    </style>
+    <link rel="stylesheet" href="assets/css/style.css">
   </head>
   <body class="">
+    <div id="preloader" class="fixed inset-0 bg-black flex flex-col justify-center items-center z-[9999]">
+  <div class="relative w-40 h-40">
+    <svg class="absolute top-0 left-0 w-full h-full" viewBox="0 0 100 100">
+      <circle class="text-gray-700" stroke-width="2" stroke="currentColor" fill="none" r="45" cx="50" cy="50"/>
+      <circle class="text-teal-400 progress-ring" stroke-width="2" stroke-linecap="round" stroke="currentColor" fill="none" r="45" cx="50" cy="50"
+      stroke-dasharray="283" stroke-dashoffset="283"/>
+    </svg>
+    <div id="progress-text" class="absolute inset-0 flex items-center justify-center text-white text-xl font-bold">0%</div>
+  </div>
+</div>
+
  <header class="fixed w-full top-0 left-0 z-50 bg-black/50 backdrop-blur-lg ">
   <div class="max-w-8xl mx-auto px-6 py-4 flex justify-between items-center">
    
@@ -70,99 +59,12 @@
         Get Started
       </button>
     </section>
-
-    <section id="features" class="py-32 px-6 bg-black">
-      <div class="max-w-6xl mx-auto">
-        <div class="text-center mb-16">
-          <h3 class="text-4xl md:text-5xl font-bold mb-4">Core Features</h3>
-          <p class="text-gray-400 max-w-2xl mx-auto">
-            Each component is carefully designed to deliver an immersive and modern feel.
-          </p>
-        </div>
-        <div class="grid md:grid-cols-3 gap-12">
-          <div class="feature-item bg-white/5 p-8 rounded-2xl border border-white/10">
-            <h4 class="text-2xl font-semibold mb-3">Smooth Scroll</h4>
-            <p class="text-gray-400 leading-relaxed">Powered by Lenis for frictionless page flow and dynamic transitions.</p>
-          </div>
-          <div class="feature-item bg-white/5 p-8 rounded-2xl border border-white/10">
-            <h4 class="text-2xl font-semibold mb-3">GSAP Animations</h4>
-            <p class="text-gray-400 leading-relaxed">Scroll-triggered magic that brings your sections to life seamlessly.</p>
-          </div>
-          <div class="feature-item bg-white/5 p-8 rounded-2xl border border-white/10">
-            <h4 class="text-2xl font-semibold mb-3">Three.js Background</h4>
-            <p class="text-gray-400 leading-relaxed">Add futuristic 3D visuals to your hero section with minimal setup.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="about" class="py-32 px-6">
-      <div class="max-w-4xl mx-auto text-center">
-        <h3 class="text-4xl md:text-5xl font-bold mb-6">About This Template</h3>
-        <p class="text-gray-400 leading-relaxed text-lg">
-          This starter kit combines Tailwind, GSAP, Lenis, and Three.js to jumpstart your futuristic project. The visual hierarchy emphasizes clarity and rhythm, with consistent heading weights and balanced body text.
-        </p>
-      </div>
-    </section>
-
     <footer class="py-12 border-t border-white/10 text-center text-gray-500 text-sm">
-      <p>© 2025 FUTUREBASE. Crafted with <span class="text-teal-400">focus</span> and caffeine.</p>
+      <p>© 2025 Heckto. Crafted with <span class="text-teal-400">focus</span> and caffeine.</p>
     </footer>
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.26/bundled/lenis.min.js"></script>
+<script type="module" src="./assets/js/animation.js"></script>
+<script  src="./assets/js/loader.js"></script>
 
-    <script type="module">
-      import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
-      import Lenis from 'https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.26/dist/lenis.min.js';
-
-      const lenis = new Lenis({ duration: 1.4 });
-      function raf(time) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
-      }
-      requestAnimationFrame(raf);
-
-      gsap.registerPlugin(ScrollTrigger);
-      gsap.utils.toArray('.feature-item').forEach((el) => {
-        gsap.from(el, {
-          scrollTrigger: {
-            trigger: el,
-            start: 'top 85%',
-          },
-          opacity: 0,
-          y: 60,
-          duration: 1.2,
-          ease: 'power3.out',
-        });
-      });
-
-      const canvas = document.getElementById('hero-bg');
-      const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-      const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      camera.position.z = 5;
-
-      const geometry = new THREE.TorusKnotGeometry(1, 0.3, 128, 16);
-      const material = new THREE.MeshStandardMaterial({ color: 0x00ffff, metalness: 0.8, roughness: 0.2 });
-      const torus = new THREE.Mesh(geometry, material);
-      scene.add(torus);
-
-      const light = new THREE.PointLight(0xffffff, 1);
-      light.position.set(5, 5, 5);
-      scene.add(light);
-
-      function animate() {
-        requestAnimationFrame(animate);
-        torus.rotation.x += 0.01;
-        torus.rotation.y += 0.015;
-        renderer.render(scene, camera);
-      }
-      animate();
-
-      window.addEventListener('resize', () => {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-      });
-    </script>
   </body>
 </html>
