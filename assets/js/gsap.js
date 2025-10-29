@@ -73,3 +73,44 @@ messages.forEach((msg, i) => {
     typeText(msg.querySelector("div") || msg, originalText);
   }}, "+=1.2");
 });
+
+// Section reveal animation using IntersectionObserver
+const integrationSection = document.querySelector('#integration-section');
+const integrationContent = document.querySelector('#integration-content');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      integrationContent.classList.remove('opacity-0', 'translate-y-10');
+      integrationContent.classList.add('opacity-100', 'translate-y-0');
+    }
+  });
+}, { threshold: 0.2 });
+
+observer.observe(integrationSection);
+const inverseWhiteSection = document.querySelector('#integration-inverse');
+const inverseWhiteContent = document.querySelector('#integration-inverse-content');
+
+const observerInverse = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      inverseWhiteContent.classList.remove('opacity-0', 'translate-y-10');
+      inverseWhiteContent.classList.add('opacity-100', 'translate-y-0');
+    }
+  });
+}, { threshold: 0.2 });
+
+observerInverse.observe(inverseWhiteSection);
+const miniSection = document.querySelector('#mini-section');
+const miniContent = document.querySelector('#mini-content');
+
+const observerMini = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      miniContent.classList.remove('opacity-0', 'translate-y-10');
+      miniContent.classList.add('opacity-100', 'translate-y-0');
+    }
+  });
+}, { threshold: 0.2 });
+
+observerMini.observe(miniSection);

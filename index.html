@@ -1,171 +1,254 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Heckto Lab | Where Innovation Comes to Reality</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script type="module" src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.26/dist/lenis.min.js"></script>
-    <script type="module" src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"></script>
-    <link rel="stylesheet" href="assets/css/style.css">
-  </head>
-  <body class="">
-    <div id="preloader" class="fixed inset-0 bg-black flex flex-col justify-center items-center z-[9999]">
-  <div class="relative w-40 h-40">
-    <svg class="absolute top-0 left-0 w-full h-full" viewBox="0 0 100 100">
-      <circle class="text-gray-700" stroke-width="2" stroke="currentColor" fill="none" r="45" cx="50" cy="50"/>
-      <circle class="text-teal-400 progress-ring" stroke-width="2" stroke-linecap="round" stroke="currentColor" fill="none" r="45" cx="50" cy="50"
-      stroke-dasharray="283" stroke-dashoffset="283"/>
-    </svg>
-    <div id="progress-text" class="absolute inset-0 flex items-center justify-center text-white text-xl font-bold">0%</div>
-  </div>
-</div>
-
- <header class="fixed w-full top-0 left-0 z-50 bg-black/50 backdrop-blur-lg ">
-  <div class="max-w-8xl mx-auto px-6 py-4 flex justify-between items-center">
-   
-    <div class="flex items-center gap-3">
-      <img src="assets/imgs/heckto_icon.webp" alt="Heckto Logo" class="h-8 w-auto object-contain">
-      <h1 class="text-2xl font-extrabold tracking-wide uppercase">HECKTO</h1>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Heckto Lab | Where Innovation Comes to Reality</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+        <script type="module" src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.26/dist/lenis.min.js"></script>
+        <script type="module" src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"></script>
+        <link rel="stylesheet" href="assets/css/style.css">
+    </head>
+    <body class="">
+        <div id="preloader" class="fixed inset-0 bg-black flex flex-col justify-center items-center z-[9999]">
+    <div class="relative w-40 h-40">
+        <svg class="absolute top-0 left-0 w-full h-full" viewBox="0 0 100 100">
+        <circle class="text-gray-700" stroke-width="2" stroke="currentColor" fill="none" r="45" cx="50" cy="50"/>
+        <circle class="text-teal-400 progress-ring" stroke-width="2" stroke-linecap="round" stroke="currentColor" fill="none" r="45" cx="50" cy="50"
+        stroke-dasharray="283" stroke-dashoffset="283"/>
+        </svg>
+        <div id="progress-text" class="absolute inset-0 flex items-center justify-center text-white text-xl font-bold">0%</div>
+    </div>
     </div>
 
+    <header class="fixed w-full top-0 left-0 z-50 bg-black/50 backdrop-blur-lg ">
+    <div class="max-w-8xl mx-auto px-6 py-4 flex justify-between items-center">
+    
+        <div class="flex items-center gap-3">
+        <img src="assets/imgs/heckto_icon.webp" alt="Heckto Logo" class="h-8 w-auto object-contain">
+        <h1 class="text-2xl font-extrabold tracking-wide uppercase">HECKTO</h1>
+        </div>
 
-    <!-- Right side (Nav + Button) -->
-    <nav class="hidden md:flex items-center gap-6 text-sm">
-      <a href="#careers" class="hover:text-teal-400 transition-colors font-medium">Careers</a>
-      <button class="px-5 py-1.5 border border-white/20 text-white text-sm rounded-md hover:border-white/70 hover:bg-white/10 transition-all duration-300">
+
+        <!-- Right side (Nav + Button) -->
+        <nav class="hidden md:flex items-center gap-6 text-sm">
+        <a href="#careers" class="hover:text-teal-400 transition-colors font-medium">Careers</a>
+        <button class="px-5 py-1.5 border border-white/20 text-white text-sm rounded-md hover:border-white/70 hover:bg-white/10 transition-all duration-300">
+            Request Access
+        </button>
+        </nav>
+    </div>
+    </header>
+
+    <canvas id="hero-bg"></canvas>
+
+    <section id="hero-section" class="min-h-screen flex items-end justify-start px-10 md:px-24 pb-20 relative z-10">
+    <div class="max-w-2xl text-left">
+        <p class="uppercase text-gray-400 text-xs tracking-widest mb-4">
+        MULTI-AGENTIC TEAMS FOR FUTURISTIC SYSTEMS.
+        </p>
+
+        <h1 class="text-4xl md:text-6xl font-extrabold leading-tight tracking-tight mb-4">
+        Introducing <span class="italic font-light text-white/90">Heckto</span><br />
+        <span class="text-white/80">for the Intelligent Future.</span>
+        </h1>
+
+        <p class="text-gray-400 text-base mt-2 max-w-md">
+        We design intelligent experiences powered by autonomy, precision, and creative data.
+        </p>
+
+        <button class="mt-8 inline-flex items-center gap-3 bg-white text-black px-7 py-3 rounded-full text-sm font-semibold tracking-wide hover:bg-gray-100 transition-all duration-300 group">
         Request Access
-      </button>
-    </nav>
-  </div>
-</header>
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+        </button>
+    </div>
+    </section>
 
-<canvas id="hero-bg"></canvas>
-
-<section id="hero-section" class="min-h-screen flex items-end justify-start px-10 md:px-24 pb-20 relative z-10">
-  <div class="max-w-2xl text-left">
-    <p class="uppercase text-gray-400 text-xs tracking-widest mb-4">
-      MULTI-AGENTIC TEAMS FOR FUTURISTIC SYSTEMS.
+    <section id="second-section" class="min-h-screen bg-white flex flex-col justify-center items-center text-center px-8 py-20">
+    <p class="uppercase text-gray-500 text-xs tracking-widest mb-2">
+        A CONNECTED NETWORK OF AI AGENTS
     </p>
 
-    <h1 class="text-4xl md:text-6xl font-extrabold leading-tight tracking-tight mb-4">
-      Introducing <span class="italic font-light text-white/90">Heckto</span><br />
-      <span class="text-white/80">for the Intelligent Future.</span>
-    </h1>
+    <h2 class="text-3xl md:text-5xl font-semibold text-black mb-4">
+        The <span class="italic font-light">operating system</span> for innovation.
+    </h2>
 
-    <p class="text-gray-400 text-base mt-2 max-w-md">
-      We design intelligent experiences powered by autonomy, precision, and creative data.
+    <p class="text-gray-700 max-w-2xl text-sm md:text-base mb-12">
+        Heckto orchestrates autonomous systems across data, design, and intelligence — forming a synchronized ecosystem that learns, adapts, and evolves like your best engineering team, only faster.
     </p>
 
-    <button class="mt-8 inline-flex items-center gap-3 bg-white text-black px-7 py-3 rounded-full text-sm font-semibold tracking-wide hover:bg-gray-100 transition-all duration-300 group">
-      Request Access
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-      </svg>
-    </button>
-  </div>
-</section>
+    <!-- Video Container -->
+        <div class="relative w-full max-w-7xl mx-auto aspect-[16/9] rounded-[2rem] overflow-hidden  mb-24 px-4 md:px-0">
+        <video 
+            class="w-full h-full object-cover rounded-[2rem]"   autoplay   muted   loop    playsinline    controls preload="metadata">
+            <source src="assets/imgs/interview.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
 
-<section id="second-section" class="min-h-screen bg-white flex flex-col justify-center items-center text-center px-8 py-20">
-  <p class="uppercase text-gray-500 text-xs tracking-widest mb-2">
-    A CONNECTED NETWORK OF AI AGENTS
-  </p>
 
-  <h2 class="text-3xl md:text-5xl font-semibold text-black mb-4">
-    The <span class="italic font-light">operating system</span> for innovation.
-  </h2>
 
-  <p class="text-gray-700 max-w-2xl text-sm md:text-base mb-12">
-    Heckto orchestrates autonomous systems across data, design, and intelligence — forming a synchronized ecosystem that learns, adapts, and evolves like your best engineering team, only faster.
-  </p>
-
-<!-- Video Container -->
-    <div class="relative w-full max-w-7xl mx-auto aspect-[16/9] rounded-[2rem] overflow-hidden  mb-24 px-4 md:px-0">
-    <video 
-        class="w-full h-full object-cover rounded-[2rem]"   autoplay   muted   loop    playsinline    controls preload="metadata">
-        <source src="assets/imgs/interview.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
+    <!-- Media Logos -->
+    <div class="w-[90vw] mx-auto flex flex-wrap justify-center items-center gap-10 md:gap-20 opacity-70 mb-10">
+    <img src="https://files.staging.peachworlds.com/website/fafa2249-ce10-4278-adff-5310620a6fd4/breakit.svg" alt="Breakit" class="h-8 md:h-10 object-contain">
+    <img src="https://files.staging.peachworlds.com/website/5af14f5b-3f68-467c-9ebf-26b0c150c7a8/forbes-logo-1.svg" alt="Forbes" class="h-8 md:h-10 object-contain">
+    <img src="http://files.staging.peachworlds.com/website/89387cd2-4278-4317-b50b-1fad635215d4/etn-.svg" alt="Etn" class="h-8 md:h-10 object-contain">
+    <img src="https://files.staging.peachworlds.com/website/ebdd3574-dc9b-4802-9d73-ccfe27b6b431/fortune-logo-2016.png" alt="Fortune" class="h-8 md:h-10 object-contain">
+    <img src="https://files.staging.peachworlds.com/website/d45004a6-9bef-412a-bef1-157f4ab449ff/250px-dagens-industri-rgb.png" alt="Dagens Industri" class="h-8 md:h-10 object-contain">
     </div>
 
 
-
-<!-- Media Logos -->
-<div class="w-[90vw] mx-auto flex flex-wrap justify-center items-center gap-10 md:gap-20 opacity-70 mb-10">
-  <img src="https://files.staging.peachworlds.com/website/fafa2249-ce10-4278-adff-5310620a6fd4/breakit.svg" alt="Breakit" class="h-8 md:h-10 object-contain">
-  <img src="https://files.staging.peachworlds.com/website/5af14f5b-3f68-467c-9ebf-26b0c150c7a8/forbes-logo-1.svg" alt="Forbes" class="h-8 md:h-10 object-contain">
-  <img src="http://files.staging.peachworlds.com/website/89387cd2-4278-4317-b50b-1fad635215d4/etn-.svg" alt="Etn" class="h-8 md:h-10 object-contain">
-  <img src="https://files.staging.peachworlds.com/website/ebdd3574-dc9b-4802-9d73-ccfe27b6b431/fortune-logo-2016.png" alt="Fortune" class="h-8 md:h-10 object-contain">
-  <img src="https://files.staging.peachworlds.com/website/d45004a6-9bef-412a-bef1-157f4ab449ff/250px-dagens-industri-rgb.png" alt="Dagens Industri" class="h-8 md:h-10 object-contain">
-</div>
+    <p class="text-gray-400 text-xs mt-8">Heckto in the Media</p>
+    </section>
 
 
-  <p class="text-gray-400 text-xs mt-8">Heckto in the Media</p>
-</section>
+    <section class="w-full bg-white text-black flex flex-col justify-start px-8 md:px-24 pt-32 pb-[30vh]">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-24 justify-center items-start max-w-8xl mx-auto">
+        
+        <!-- Analyze Card -->
+        <div class="flex flex-col items-start">
+        <div class="w-full h-[65vh] bg-gray-100 rounded-3xl overflow-hidden mb-10 shadow-md">
+            <img src="assets/imgs/anaylze.jpg"
+                alt="Analyze Visual"
+                class="w-full h-full object-cover">
+        </div>
+        <h3 class="text-3xl font-normal mb-3 tracking-tight">Analyze</h3>
+        <p class="text-gray-500 leading-relaxed max-w-md">
+            Heckto dives into your data, uncovers insights, and explains performance in real-time — helping teams make smarter decisions faster.
+        </p>
+        </div>
 
+        <!-- Execute Card -->
+        <div class="flex flex-col items-start">
+        <div class="w-full h-[65vh] bg-gray-100 rounded-3xl overflow-hidden mb-10 shadow-md">
+            <img src="assets/imgs/execute.jpg"
+                alt="Execute Visual"
+                class="w-full h-full object-cover">
+        </div>
+        <h3 class="text-3xl font-normal mb-3 tracking-tight">Execute</h3>
+        <p class="text-gray-500 leading-relaxed max-w-md">
+            Heckto automates execution across platforms — optimizing systems, deploying updates, and maintaining precision without human delay.
+        </p>
+        </div>
 
-<section class="w-full bg-white text-black flex flex-col justify-start px-8 md:px-24 pt-32 pb-[30vh]">
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-24 justify-center items-start max-w-8xl mx-auto">
+    </div>
+    </section>
+    <section id="chat-section" class="relative w-full bg-black text-white min-h-screen flex flex-col justify-center items-center px-6">
+    <div class="max-w-3xl w-full space-y-10">
+        
+        <!-- Message 1 -->
+        <div class="chat-message border border-white/20 rounded-2xl p-6 text-2xl leading-relaxed opacity-0">
+        Hi Heckto! Every Monday at 9am, generate a weekly report for all my clients and send me an email with key performance highlights.
+        </div>
+
+        <!-- Message 2 (with Heckto DP) -->
+        <div class="flex items-start gap-4 opacity-0 chat-message">
+        <img src="assets/imgs/heckto_icon.webp" alt="Heckto" class="w-10 h-10 rounded-full object-cover mt-1">
+        <div class="bg-white text-black rounded-2xl p-6 text-2xl leading-relaxed inline-block">
+            Absolutely! I’ll handle the weekly reporting going forward. 
+        </div>
+        </div>
+
+        <!-- Message 3 -->
+        <div class="chat-message border border-white/20 rounded-2xl p-6 text-2xl leading-relaxed opacity-0">
+        Also, make sure to filter out all irrelevant data for better analytics accuracy.
+        </div>
+
+        <!-- Message 4 -->
+        <div class="flex items-start gap-4 opacity-0 chat-message">
+        <img src="assets/imgs/heckto_icon.webp" alt="Heckto" class="w-10 h-10 rounded-full object-cover mt-1">
+        <div class="bg-white text-black rounded-2xl p-6 text-2xl leading-relaxed inline-block">
+            On it! Adding that to my agenda each day. 📊
+        </div>
+        </div>
+
+    </div>
+    </section>
+
+<section id="integration-section" class="min-h-[100vh] flex flex-col justify-center items-center bg-white text-black overflow-hidden px-10 md:px-24 transition-all duration-1000">
+  <div class="max-w-5xl w-full grid grid-cols-1 md:grid-cols-2 gap-20 items-center opacity-0 translate-y-10 transition-all duration-1000" id="integration-content">
     
-    <!-- Analyze Card -->
-    <div class="flex flex-col items-start">
-      <div class="w-full h-[65vh] bg-gray-100 rounded-3xl overflow-hidden mb-10 shadow-md">
-        <img src="assets/imgs/anaylze.jpg"
-             alt="Analyze Visual"
-             class="w-full h-full object-cover">
+    <!-- Left Text Block -->
+    <div class="space-y-6 text-left">
+      <h2 class="text-6xl md:text-7xl font-semibold leading-tight">
+        Heckto <span class="italic font-light">adapts</span> to you.
+      </h2>
+
+      <div class="mt-10">
+        <h3 class="text-3xl md:text-4xl font-normal mb-3">Connected to<br>Your Intelligent Stack.</h3>
+        <p class="text-gray-600 text-lg leading-relaxed max-w-md">
+          Heckto integrates seamlessly with your entire AI ecosystem — analytics, automations, and data systems — to deliver one unified experience across your stack.
+        </p>
       </div>
-      <h3 class="text-3xl font-normal mb-3 tracking-tight">Analyze</h3>
-      <p class="text-gray-500 leading-relaxed max-w-md">
-        Heckto dives into your data, uncovers insights, and explains performance in real-time — helping teams make smarter decisions faster.
+    </div>
+
+    <!-- Right Image Block -->
+    <div class="relative flex justify-center">
+      <div class="bg-black rounded-3xl p-10 shadow-2xl w-full max-w-2xl transition-all duration-700 hover:scale-[1.02] hover:shadow-3xl">
+        <img src="https://files.staging.peachworlds.com/website/bc4201da-15b7-404c-a6c7-fa1296e8b4f9/logos.png"
+             alt="Integration Logos"
+             class="w-full h-auto object-contain">
+      </div>
+    </div>
+
+  </div>
+</section>
+<section id="integration-inverse" class="min-h-[20vh] flex flex-col justify-center items-center bg-white text-black overflow-hidden px-10 md:px-24 transition-all duration-1000">
+  <div class="max-w-5xl w-full grid grid-cols-1 md:grid-cols-2 gap-20 items-center opacity-0 translate-y-10 transition-all duration-1000" id="integration-inverse-content">
+    
+    <!-- Left Image Block -->
+    <div class="relative flex justify-center">
+      <div class="bg-black rounded-3xl p-10 shadow-2xl w-full max-w-2xl transition-all duration-700 hover:scale-[1.02] hover:shadow-3xl">
+        <img src="https://files.staging.peachworlds.com/website/694dec86-e554-4b5c-9042-405bd573ff66/group-427319067.png"
+             alt="AI Integration Graphic"
+             class="w-full h-auto object-contain">
+      </div>
+    </div>
+
+    <!-- Right Text Block -->
+    <div class="space-y-6 text-left">
+      <h2 class="text-6xl md:text-7xl font-semibold leading-tight">
+        Heckto <span class="italic font-light text-gray-500">evolves</span> with you.
+      </h2>
+
+      <div class="mt-10">
+        <h3 class="text-3xl md:text-4xl font-normal mb-3">Empowering<br>Autonomous Systems.</h3>
+        <p class="text-gray-600 text-lg leading-relaxed max-w-md">
+          Heckto continuously adapts its intelligence — learning from data, predicting outcomes, and automating decisions to help your ecosystem evolve faster and smarter.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+<section id="mini-section" class="min-h-[120vh] flex flex-col justify-center items-center bg-white text-black overflow-hidden px-10 md:px-24 transition-all duration-1000">
+  <div class="max-w-5xl w-full grid grid-cols-1 md:grid-cols-2 gap-20 items-center opacity-0 translate-y-10 transition-all duration-1000" id="mini-content">
+    
+    <!-- Left Text Block -->
+    <div class="space-y-4 text-left order-2 md:order-1">
+      <h2 class="text-4xl md:text-5xl font-semibold leading-tight">
+        Native in<br><span class="italic font-light text-gray-500">Your Systems.</span>
+      </h2>
+
+      <p class="text-gray-600 text-base leading-relaxed max-w-md">
+        Lucy is built to act like a colleague — she works where you work.  
+        You can chat with her in Slack or email her with questions or tasks.
       </p>
     </div>
 
-    <!-- Execute Card -->
-    <div class="flex flex-col items-start">
-      <div class="w-full h-[65vh] bg-gray-100 rounded-3xl overflow-hidden mb-10 shadow-md">
-        <img src="assets/imgs/execute.jpg"
-             alt="Execute Visual"
-             class="w-full h-full object-cover">
-      </div>
-      <h3 class="text-3xl font-normal mb-3 tracking-tight">Execute</h3>
-      <p class="text-gray-500 leading-relaxed max-w-md">
-        Heckto automates execution across platforms — optimizing systems, deploying updates, and maintaining precision without human delay.
-      </p>
-    </div>
-
-  </div>
-</section>
-<section id="chat-section" class="relative w-full bg-black text-white min-h-screen flex flex-col justify-center items-center px-6">
-  <div class="max-w-3xl w-full space-y-10">
-    
-    <!-- Message 1 -->
-    <div class="chat-message border border-white/20 rounded-2xl p-6 text-lg leading-relaxed opacity-0">
-      Hi Heckto! Every Monday at 9am, generate a weekly report for all my clients and send me an email with key performance highlights.
-    </div>
-
-    <!-- Message 2 (with Heckto DP) -->
-    <div class="flex items-start gap-4 opacity-0 chat-message">
-      <img src="assets/imgs/heckto_icon.webp" alt="Heckto" class="w-10 h-10 rounded-full object-cover mt-1">
-      <div class="bg-white text-black rounded-2xl p-6 text-lg leading-relaxed inline-block">
-        Absolutely! I’ll handle the weekly reporting going forward. ✅
-      </div>
-    </div>
-
-    <!-- Message 3 -->
-    <div class="chat-message border border-white/20 rounded-2xl p-6 text-lg leading-relaxed opacity-0">
-      Also, make sure to filter out all irrelevant data for better analytics accuracy.
-    </div>
-
-    <!-- Message 4 -->
-    <div class="flex items-start gap-4 opacity-0 chat-message">
-      <img src="assets/imgs/heckto_icon.webp" alt="Heckto" class="w-10 h-10 rounded-full object-cover mt-1">
-      <div class="bg-white text-black rounded-2xl p-6 text-lg leading-relaxed inline-block">
-        On it! Adding that to my agenda each day. 📊
+    <!-- Right Image Block -->
+    <div class="relative flex justify-center order-1 md:order-2">
+      <div class="bg-black rounded-3xl p-8 shadow-2xl w-full max-w-2xl transition-all duration-700 hover:scale-[1.02] hover:shadow-3xl">
+        <img src="https://files.staging.peachworlds.com/website/7952e4cd-968e-4b02-8490-de254e029bc1/group-2087328732.png"
+             alt="Lucy System Integration"
+             class="w-full h-auto object-contain">
       </div>
     </div>
 
@@ -174,13 +257,37 @@
 
 
 
-    <footer class="py-12 border-t border-white/10 text-center text-gray-500 text-sm">
-      <p>© 2025 Heckto. Crafted with <span class="text-teal-400">focus</span> and caffeine.</p>
-    </footer>
-<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.26/bundled/lenis.min.js"></script>
-<script type="module" src="./assets/js/animation.js"></script>
-<script  src="./assets/js/loader.js"></script>
-<script  src="./assets/js/gsap.js"></script>
+    <section id="video-section" class="min-h-screen bg-white flex flex-col justify-center items-center text-center px-8 py-20">
+   
 
-  </body>
-</html>
+    <h2 class="text-3xl md:text-5xl font-semibold text-black mb-4">
+        Heckto Is  <span class="italic font-light">Proactive</span>
+      
+    </h2>
+
+ <p class="uppercase text-gray-500 text-xs tracking-widest mb-2">
+        Heckto  constantly reviews performance, flags issues, and surfaces insights before they impact results.
+    </p>
+    <!-- Video Container -->
+        <div class="relative w-full max-w-5xl mx-auto aspect-[16/9] rounded-[2rem] overflow-hidden  mb-24 px-4 md:px-0">
+        <video 
+            class="w-full h-full object-cover rounded-[2rem]"   autoplay   muted   loop    playsinline    controls preload="metadata">
+            <source src="assets/imgs/section.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+
+    </section>
+
+
+        <footer class="py-12 border-t border-white/10 text-center text-gray-500 text-sm">
+        <p>© 2025 Heckto. Crafted with <span class="text-teal-400">focus</span> and caffeine.</p>
+        </footer>
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.26/bundled/lenis.min.js"></script>
+    <script type="module" src="./assets/js/animation.js"></script>
+    <script  src="./assets/js/loader.js"></script>
+    <script  src="./assets/js/gsap.js"></script>
+ 
+    </body>
+    </html>
