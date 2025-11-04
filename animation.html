@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI Holographic Face</title>
+<style>
+  html,body{
+    margin:0;
+    height:100%;
+    background:#000;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+  }
+  svg{
+    height:90vh;
+    width:auto;
+    filter:drop-shadow(0 0 20px #00f0ff);
+  }
+  .wire{
+    fill:none;
+    stroke:url(#neon);
+    stroke-width:1.2;
+    stroke-linejoin:round;
+    stroke-linecap:round;
+  }
+</style>
+</head>
+<body>
+
+<svg id="aiFace" viewBox="0 0 500 700" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="neon" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00ffff" />
+      <stop offset="100%" stop-color="#0080ff" />
+    </linearGradient>
+  </defs>
+
+  <!-- Base head -->
+  <path id="head" class="wire" d="M250 50
+      C340 50 420 150 420 280
+      C420 420 340 640 250 650
+      C160 640 80 420 80 280
+      C80 150 160 50 250 50Z"/>
+
+  <!-- Eyes -->
+  <path id="eyeL" class="wire" d="M170 270 C190 260 210 260 230 270 C210 275 190 275 170 270Z"/>
+  <path id="eyeR" class="wire" d="M270 270 C290 260 310 260 330 270 C310 275 290 275 270 270Z"/>
+
+  <!-- Nose -->
+  <path id="nose" class="wire" d="M245 280 L255 330 L250 380"/>
+
+  <!-- Mouth -->
+  <path id="mouth" class="wire" d="M200 420 Q250 450 300 420"/>
+
+  <!-- Ears -->
+  <path id="earL" class="wire" d="M80 310 Q60 340 80 370"/>
+  <path id="earR" class="wire" d="M420 310 Q440 340 420 370"/>
+
+  <!-- Neck -->
+  <path id="neck" class="wire" d="M180 600 Q250 670 320 600"/>
+
+  <!-- Glow net lines -->
+  <path id="grid1" class="wire" opacity=".3" d="M250 120 Q200 250 250 380 Q300 250 250 120Z"/>
+  <path id="grid2" class="wire" opacity=".3" d="M150 200 Q250 220 350 200"/>
+</svg>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/MorphSVGPlugin.min.js"></script>
+
+<script>
+gsap.registerPlugin(MorphSVGPlugin);
+
+// Blink morph (eyes)
+const blink = gsap.timeline({ repeat: -1, repeatDelay: 4 });
+blink.to("#eyeL", { duration: 0.2, morphSVG: "M170 270 C200 270 210 270 230 270 C210 270 200 270 170 270Z", ease: "power1.inOut" })
+     .to("#eyeR", { duration: 0.2, morphSVG: "M270 270 C300 270 310 270 330 270 C310 270 300 270 270 270Z", ease: "power1.inOut" }, "<")
+     .to(["#eyeL","#eyeR"], { duration: 0.2, morphSVG: null }, "+=0.2");
+
+// Subtle mouth motion
+gsap.to("#mouth", {
+  duration: 3,
+  repeat: -1,
+  yoyo: true,
+  ease: "sine.inOut",
+  attr: { d: "M200 420 Q250 440 300 420" }
+});
+
+// Gradient breathing glow
+gsap.to("#neon stop:first-child", {
+  duration: 3,
+  repeat: -1,
+  yoyo: true,
+  stopColor: "#00faff",
+  ease: "sine.inOut"
+});
+gsap.to("#neon stop:last-child", {
+  duration: 3,
+  repeat: -1,
+  yoyo: true,
+  stopColor: "#0066ff",
+  ease: "sine.inOut"
+});
+
+// Mouse parallax
+const svg = document.getElementById("aiFace");
+document.addEventListener("mousemove", e=>{
+  const x = (e.clientX / window.innerWidth - 0.5) * 10;
+  const y = (e.clientY / window.innerHeight - 0.5) * 10;
+  gsap.to(svg, { rotationY:x, rotationX:-y, transformOrigin:"center center", ease:"sine.out", duration:0.4 });
+});
+</script>
+</body>
+</html>
