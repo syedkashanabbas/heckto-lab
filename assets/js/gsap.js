@@ -69,10 +69,21 @@ const tl = gsap.timeline({
 // Animate messages appearing one by one
 messages.forEach((msg, i) => {
   const originalText = msg.innerText.trim();
-  tl.to(msg, { opacity: 1, duration: 0.3, onStart: () => {
-    typeText(msg.querySelector("div") || msg, originalText);
-  }}, "+=1.2");
+  msg.dataset.hasTyped = "false"; // Add a flag to each message
+
+  tl.to(msg, {
+    opacity: 1,
+    duration: 0.3,
+    onStart: () => {
+      // Only trigger typing ONCE
+      if (msg.dataset.hasTyped === "false") {
+        msg.dataset.hasTyped = "true";
+        typeText(msg.querySelector("div") || msg, originalText);
+      }
+    },
+  }, "+=1.2");
 });
+
 
 // Section reveal animation using IntersectionObserver
 const integrationSection = document.querySelector('#integration-section');

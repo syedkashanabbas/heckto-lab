@@ -60,8 +60,8 @@
         #theme-selector {
             top: 20px;
             right: 20px;
-            display: flex;
-            flex-direction: column;
+            display: none;
+            /* flex-direction: column; */
             gap: 12px;
             max-width: 150px;
         }
@@ -73,7 +73,7 @@
         }
 
         .theme-grid {
-            display: grid;
+            display: none ;
             grid-template-columns: repeat(2, 1fr);
             gap: 10px;
         }
@@ -107,14 +107,14 @@
 
         #density-controls {
             margin-top: 8px;
-            display: flex;
+            display: none;
             flex-direction: column;
             gap: 8px;
         }
 
         .density-label {
             font-size: 13px;
-            display: flex;
+            display: none;
             justify-content: space-between;
         }
 
@@ -155,7 +155,7 @@
             bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
-            display: flex;
+            display: none;
             gap: 15px;
             z-index: 10;
             background: rgba(0, 0, 0, .6);
@@ -258,10 +258,6 @@
 
     </style>
 
-    <div id="instructions-container" class="ui-panel">
-        <div id="instruction-title">Interactive Neural Network</div>
-        <div>Click or tap to create energy pulses through the network. Drag to rotate.</div>
-        </div>
 
     <div id="theme-selector" class="ui-panel">
         <div id="theme-selector-title">Visual Theme</div>
