@@ -1,123 +1,124 @@
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
 
-// === Smooth Scroll (Lenis) ===
-const lenis = new Lenis({ duration: 1.4 });
-function raf(time) {
-  lenis.raf(time);
-  requestAnimationFrame(raf);
-}
-requestAnimationFrame(raf);
-
-// === GSAP Scroll Animations ===
-gsap.registerPlugin(ScrollTrigger);
-gsap.utils.toArray('.feature-item').forEach((el) => {
-  gsap.from(el, {
-    scrollTrigger: {
-      trigger: el,
-      start: 'top 85%',
-    },
-    opacity: 0,
-    y: 60,
-    duration: 1.2,
-    ease: 'power3.out',
-  });
-});
-
-// === THREE.JS Scene Setup ===
-const canvas = document.getElementById('hero-bg');
+// Scene setup
+const canvas = document.getElementById("hero-bg");
 const scene = new THREE.Scene();
 
 const camera = new THREE.PerspectiveCamera(
-  65,
+  60,
   window.innerWidth / window.innerHeight,
   0.1,
-  1000
+  2000
 );
-camera.position.set(0, 0, 8);
+camera.position.set(0, 0, 35);
 
-const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+// Renderer
+const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-let particles;
+// BIG LANDSCAPE SETTINGS
+const NODE_COUNT = 380;
+const NODES = [];
+const maxDistance = 4;  
+const AREA_X = 40;  
+const AREA_Y = 20;  
+const AREA_Z = 24;
 
-// === Load Image ===
-const loader = new THREE.TextureLoader();
-loader.load('assets/imgs/face.png', (texture) => {
-  const img = texture.image;
-  const canvas2 = document.createElement('canvas');
-  const ctx = canvas2.getContext('2d');
-  canvas2.width = img.width;
-  canvas2.height = img.height;
-  ctx.drawImage(img, 0, 0, img.width, img.height);
+const nodeGeometry = new THREE.SphereGeometry(0.12, 8, 8);
 
-  const imgData = ctx.getImageData(0, 0, img.width, img.height);
-  const positions = [];
-  const colors = [];
+// gradient node material
+const nodeMaterial = new THREE.MeshBasicMaterial({
+  color: 0x7cffb2
+});
 
-  const color = new THREE.Color();
+// create nodes
+for (let i = 0; i < NODE_COUNT; i++) {
+  const node = new THREE.Mesh(nodeGeometry, nodeMaterial);
 
-  // Convert pixels into particles
-  for (let y = 0; y < img.height; y += 3) {
-    for (let x = 0; x < img.width; x += 3) {
-      const i = (y * img.width + x) * 4;
-      const brightness = imgData.data[i]; // use red channel
-      if (brightness > 50) { // threshold to skip black pixels
-        const posX = (x - img.width / 2) / 50;
-        const posY = -(y - img.height / 2) / 50;
-        const posZ = Math.random() * 0.4 - 0.2; // depth
-        positions.push(posX, posY, posZ);
+  node.position.set(
+    (Math.random() - 0.5) * AREA_X,
+    (Math.random() - 0.5) * AREA_Y,
+    (Math.random() - 0.5) * AREA_Z
+  );
 
-        color.setHSL(0.35 + Math.random() * 0.1, 1, 0.6 + Math.random() * 0.2); // green tone
-        colors.push(color.r, color.g, color.b);
+  node.velocity = new THREE.Vector3(
+    (Math.random() - 0.5) * 0.015,
+    (Math.random() - 0.5) * 0.015,
+    (Math.random() - 0.5) * 0.015
+  );
+
+  NODES.push(node);
+  scene.add(node);
+}
+
+// Lines
+const lineMaterial = new THREE.LineBasicMaterial({
+  color: 0x5affd6,
+  transparent: true,
+  opacity: 0.35
+});
+
+const lineGeometry = new THREE.BufferGeometry();
+let linePositions = new Float32Array(NODE_COUNT * NODE_COUNT * 3 * 2);
+lineGeometry.setAttribute("position", new THREE.BufferAttribute(linePositions, 3));
+const lineMesh = new THREE.LineSegments(lineGeometry, lineMaterial);
+scene.add(lineMesh);
+
+// Animation
+function animate() {
+  requestAnimationFrame(animate);
+
+  let index = 0;
+
+  for (let i = 0; i < NODE_COUNT; i++) {
+    const a = NODES[i];
+
+    // move
+    a.position.add(a.velocity);
+
+    // bounce limits
+    if (a.position.x > AREA_X / 2 || a.position.x < -AREA_X / 2) a.velocity.x *= -1;
+    if (a.position.y > AREA_Y / 2 || a.position.y < -AREA_Y / 2) a.velocity.y *= -1;
+    if (a.position.z > AREA_Z / 2 || a.position.z < -AREA_Z / 2) a.velocity.z *= -1;
+
+    // check lines
+    for (let j = i + 1; j < NODE_COUNT; j++) {
+      const b = NODES[j];
+
+      const dist = a.position.distanceTo(b.position);
+      if (dist < maxDistance) {
+        linePositions[index++] = a.position.x;
+        linePositions[index++] = a.position.y;
+        linePositions[index++] = a.position.z;
+
+        linePositions[index++] = b.position.x;
+        linePositions[index++] = b.position.y;
+        linePositions[index++] = b.position.z;
       }
     }
   }
 
-  const geometry = new THREE.BufferGeometry();
-  geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
-  geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
-
-  const material = new THREE.PointsMaterial({
-    size: 0.045,
-    vertexColors: true,
-    blending: THREE.AdditiveBlending,
-    transparent: true,
-    opacity: 0.95,
-  });
-
-  particles = new THREE.Points(geometry, material);
-  scene.add(particles);
-});
-
-// === Lights ===
-const ambientLight = new THREE.AmbientLight(0xffffff, 0.2);
-const pointLight = new THREE.PointLight(0x7cffb2, 2, 50);
-pointLight.position.set(2, 3, 5);
-scene.add(ambientLight, pointLight);
-
-// === Animation Loop ===
-function animate() {
-  requestAnimationFrame(animate);
-
-  if (particles) {
-    const positions = particles.geometry.attributes.position.array;
-    for (let i = 0; i < positions.length; i += 3) {
-      positions[i + 2] = Math.sin(Date.now() * 0.001 + positions[i] * 2) * 0.15; // wave depth
-    }
-    particles.geometry.attributes.position.needsUpdate = true;
-
-    particles.rotation.y += 0.002;
-    particles.rotation.x += 0.001;
+  // remove leftover lines
+  for (let k = index; k < linePositions.length; k++) {
+    linePositions[k] = 0;
   }
+
+  lineGeometry.attributes.position.needsUpdate = true;
+
+  // subtle breathing
+  scene.rotation.x = Math.sin(Date.now() * 0.0003) * 0.04;
+  scene.rotation.y = Math.sin(Date.now() * 0.0004) * 0.03;
 
   renderer.render(scene, camera);
 }
+
 animate();
 
-// === Responsive Resize ===
-window.addEventListener('resize', () => {
+// resize
+window.addEventListener("resize", () => {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
 });
+ 
