@@ -21,23 +21,23 @@ heroTimeline.to(heroCanvas, {
 }, 0);
 
 // Fade out hero text towards the end
-heroTimeline.to("#hero-section", {
-  opacity: 0,
-  y: -100,
-  ease: "power2.out",
-}, 0.7);
+// heroTimeline.to("#hero-section", {
+//   opacity: 0,
+//   y: -100,
+//   ease: "power2.out",
+// }, 0.7);
 
-// When hero is done, reveal next section
-gsap.from("#second-section", {
-  opacity: 0,
-  y: 200,
-  duration: 1.2,
-  ease: "power3.out",
-  scrollTrigger: {
-    trigger: "#second-section",
-    start: "top 80%",
-  },
-});
+// // When hero is done, reveal next section
+// gsap.from("#second-section", {
+//   opacity: 0,
+//   y: 200,
+//   duration: 1.2,
+//   ease: "power3.out",
+//   scrollTrigger: {
+//     trigger: "#second-section",
+//     start: "top 80%",
+//   },
+// });
 
 
 // Helper: Typing effect
