@@ -39,9 +39,8 @@ const heroCanvas = document.getElementById("hero-bg");
 //   },
 // });
 
-
-// Helper: Typing effect
-function typeText(element, text, delay = 0, speed = 30) {
+// Faster typing effect
+function typeText(element, text, delay = 0, speed = 5) {
   element.innerHTML = "";
   let i = 0;
   setTimeout(() => {
@@ -60,28 +59,27 @@ const tl = gsap.timeline({
   scrollTrigger: {
     trigger: "#chat-section",
     start: "top top",
-    end: "+=400%",
+    end: "+=300%",   // shorter scroll distance for faster reveal
     scrub: true,
     pin: true,
   }
 });
 
 // Animate messages appearing one by one
-messages.forEach((msg, i) => {
+messages.forEach((msg) => {
   const originalText = msg.innerText.trim();
-  msg.dataset.hasTyped = "false"; // Add a flag to each message
+  msg.dataset.hasTyped = "false";
 
   tl.to(msg, {
     opacity: 1,
-    duration: 0.3,
+    duration: 0.2,
     onStart: () => {
-      // Only trigger typing ONCE
       if (msg.dataset.hasTyped === "false") {
         msg.dataset.hasTyped = "true";
-        typeText(msg.querySelector("div") || msg, originalText);
+        typeText(msg.querySelector("div") || msg, originalText, 0, 5);
       }
     },
-  }, "+=1.2");
+  }, "+=0.5");  // faster entry gap
 });
 
 
