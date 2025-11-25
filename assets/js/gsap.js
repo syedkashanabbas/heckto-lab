@@ -3,22 +3,22 @@ gsap.registerPlugin(ScrollTrigger);
 const heroCanvas = document.getElementById("hero-bg");
 
 // Create a timeline for the hero scroll scene
-const heroTimeline = gsap.timeline({
-  scrollTrigger: {
-    trigger: "#hero-section",
-    start: "top top",
-    end: "bottom+=200% top", // controls how long the hero stays pinned
-    scrub: true,
-    pin: true,
-    anticipatePin: 1,
-  },
-});
+// const heroTimeline = gsap.timeline({
+//   scrollTrigger: {
+//     trigger: "#hero-section",
+//     start: "top top",
+//     end: "bottom+=200% top", // controls how long the hero stays pinned
+//     scrub: true,
+//     pin: true,
+//     anticipatePin: 1,
+//   },
+// });
 
 // Zoom in the canvas smoothly
-heroTimeline.to(heroCanvas, {
-  scale: 2.5,
-  ease: "power2.inOut",
-}, 0);
+// heroTimeline.to(heroCanvas, {
+//   scale: 2.5,
+//   ease: "power2.inOut",
+// }, 0);
 
 // Fade out hero text towards the end
 // heroTimeline.to("#hero-section", {
