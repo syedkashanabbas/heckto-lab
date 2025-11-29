@@ -28,16 +28,16 @@ heroTimeline.to("#hero-section", {
 }, 0.7);
 
 // When hero is done, reveal next section
-gsap.from("#second-section", {
-  opacity: 0,
-  y: 200,
-  duration: 1.2,
-  ease: "power3.out",
-  scrollTrigger: {
-    trigger: "#second-section",
-    start: "top 80%",
-  },
-});
+// gsap.from("#second-section", {
+//   opacity: 0,
+//   y: 200,
+//   duration: 1.2,
+//   ease: "power3.out",
+//   scrollTrigger: {
+//     trigger: "#second-section",
+//     start: "top 80%",
+//   },
+// });
 
 // Faster typing effect
 function typeText(element, text, delay = 0, speed = 5) {
